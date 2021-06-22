@@ -1,0 +1,37 @@
+#main {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+#title {
+    text-align: center;
+    padding-top:70pt;
+}
+
+#a1 {
+   background-color: blanchedalmond;
+}
+
+#a4 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+#num_inp {
+    border: none;
+}
+
+.outer_square {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border: 1.5pt solid;
+    border-color: darkgray;
+}
+
+.inner_square {
+    height: 1.5cm;
+    border: 0.5pt solid;
+    border-width: 0.5pt;
+    width: 1.5cm;
+    border-color: darkgray;
+}
