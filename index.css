@@ -17,7 +17,7 @@
     grid-template-columns: repeat(3, 1fr);
 }
 
-#num_inp {
+.num_inp {
     border: none;
 }
 
@@ -29,6 +29,8 @@
 }
 
 .inner_square {
+    text-align: center;
+    padding-top: 4mm;
     height: 1.5cm;
     border: 0.5pt solid;
     border-width: 0.5pt;

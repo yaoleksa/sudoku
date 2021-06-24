@@ -1,6 +1,6 @@
 const main=document.getElementById('main');
 
-const table=[];
+const table=[1, 2, 3, 4, 5, 6, 7, 8, 9];
 const verticalValues=[];
 const horizontalValues=[];
 
@@ -17,36 +17,46 @@ title.innerHTML='Sudoku';
 divWithTitle.appendChild(title);
 
 const divWithTable=document.getElementById('a4');
+let count=0;
+
+
 for(let i=0; i<9;i++) {
     let div=document.createElement('div');
     div.setAttribute('class','outer_square');
     for(let j=0;j<9;j++) {
         let nestedDiv=document.createElement('div');
         nestedDiv.setAttribute('class', 'inner_square');
-        let coincidence=parseInt(Math.random()*2);
-        if(coincidence===1){
+        /*let coincidence=parseInt(Math.random()*2);
+        let buf=table[parseInt(Math.random() * table.length)];
+        if(coincidence===1&&!verticalValues.includes(buf)&&!horizontalValues.includes(buf)) {
             let p=document.createElement('p');
-            let buf=parseInt(Math.random()*10);
-            if(!table.includes(buf)&&!verticalValues.includes(buf)&&!horizontalValues.includes(buf)) {
-                p.innerHTML=buf;
-                table.push(buf);
-                verticalValues.push(buf);
-                horizontalValues.push(buf);
-            }
+            p.innerHTML = buf;
             nestedDiv.appendChild(p);
+            table.splice(table.indexOf(buf), 1);
+            verticalValues.push(buf);
+            horizontalValues.push(buf);
         } else {
             let input=document.createElement('input');
-            input.setAttribute('id', 'num_inp');
+            input.setAttribute('class', 'num_inp');
             input.setAttribute('type', 'number');
             input.setAttribute('min', '1');
             input.setAttribute('max', '9');
             nestedDiv.appendChild(input);
-        }
+        }*/
+        let p = document.createElement('p');
+        p.innerHTML = count;
+        count++;
+        nestedDiv.appendChild(p);
         div.appendChild(nestedDiv);
     }
-    table.length=0;
+    
+    for(let i = 0; i < 9; i++) {
+        table.push(i+1);
+    }
+
     if((i+1)%3===0) {
         horizontalValues.length=0;
     }
+    // TODO: create algorithm to reset verticalValues
     divWithTable.appendChild(div);
 }
