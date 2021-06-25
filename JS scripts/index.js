@@ -244,3 +244,12 @@ const divWithButton = document.getElementById('a7');
 const submitButton = document.createElement('button');
 submitButton.innerHTML = 'SUBMIT';
 divWithButton.appendChild(submitButton);
+
+const innerSquare = document.getElementsByClassName('inner_square');
+
+const submit = () => {
+    console.log('ok');
+    return false;
+}
+
+submitButton.addEventListener('click', submit);
