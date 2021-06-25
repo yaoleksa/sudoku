@@ -248,7 +248,10 @@ divWithButton.appendChild(submitButton);
 const innerSquare = document.getElementsByClassName('inner_square');
 
 const submit = () => {
-    console.log('ok');
+    for(let i = 0; i < 81; i++) {
+        console.log(innerSquare[i].childNodes[0]);
+        //check(rows, columns, count, )
+    }
     return false;
 }
 
