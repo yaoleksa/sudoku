@@ -1,6 +1,8 @@
 /* Validator
 In future this part of code will be imported from validator.js file.
-But now I can't solove problem with importing */
+But now I can't solove problem with importing.
+This file will be separated minimum into two different files.
+ */
 
 
 
