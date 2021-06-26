@@ -184,7 +184,13 @@ const check = (rows, columns, num, val) => {
 }
 
 
-
+const renew = (arr) => {
+    if(arr.length < 1) {
+        for(let i=0; i<9; i++) {
+            arr.push(i+1);
+        }
+    }
+}
 
 
 //const validateTable = require('./validator.js');
@@ -235,11 +241,7 @@ for(let i=0; i<9;i++) {
     }
 
     table.length = 0;
-
-    for(let i = 0; i < 9; i++) {
-        table.push(i+1);
-    };
-
+    renew(table);
     divWithTable.appendChild(div);
 };
 
@@ -251,16 +253,25 @@ divWithButton.appendChild(submitButton);
 const innerSquare = document.getElementsByClassName('inner_square');
 
 const submit = () => {
+    let cellValue = 0;
     for(let i = 0; i < 81; i++) {
         if(innerSquare[i].firstChild.nodeName === 'INPUT') {
-            if(!innerSquare[i].firstChild.value) {
+            cellValue = parseInt(innerSquare[i].firstChild.value);
+            if(!cellValue) {
                 alert('Empty cells are not allowed.');
                 return;
             }
-            if(!check(rows, columns, i, innerSquare[i].firstChild.value)) {
+            if(!check(rows, columns, i, cellValue)) {
                 changeStyle(innerSquare[i].firstChild);
             }
+        } else {
+            cellValue = parseInt(innerSquare[i].firstChild.innerHTML);
+        }
+        if(table.indexOf(cellValue) < 0) {
+            changeStyle(innerSquare[i].firstChild);
         };
+        table.splice(table.indexOf(cellValue), 1);
+        renew(table);
     }
     for(let i = 0; i < 81; i++) {
         if(innerSquare[i].firstChild.nodeName === 'P') {
