@@ -41,3 +41,8 @@
     width: 1.5cm;
     border-color: darkgray;
 }
+
+.changed {
+    color: red;
+    border: none;
+}

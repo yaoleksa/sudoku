@@ -217,7 +217,7 @@ for(let i=0; i<9;i++) {
         nestedDiv.setAttribute('class', 'inner_square');
         let coincidence=parseInt(Math.random()*2);
         let buf=table[parseInt(Math.random() * table.length)];
-        if(coincidence===1&&check(rows, columns, count, buf)) {
+        if(coincidence===1 && check(rows, columns, count, buf)) {
             let p=document.createElement('p');
             p.innerHTML = buf;
             nestedDiv.appendChild(p);
@@ -233,10 +233,13 @@ for(let i=0; i<9;i++) {
         count++;
         div.appendChild(nestedDiv);
     }
-    
+
+    table.length = 0;
+
     for(let i = 0; i < 9; i++) {
         table.push(i+1);
     };
+
     divWithTable.appendChild(div);
 };
 
@@ -249,10 +252,30 @@ const innerSquare = document.getElementsByClassName('inner_square');
 
 const submit = () => {
     for(let i = 0; i < 81; i++) {
-        console.log(innerSquare[i].childNodes[0]);
-        //check(rows, columns, count, )
+        if(innerSquare[i].firstChild.nodeName === 'INPUT') {
+            if(!innerSquare[i].firstChild.value) {
+                alert('Empty cells are not allowed.');
+                return;
+            }
+            if(!check(rows, columns, i, innerSquare[i].firstChild.value)) {
+                changeStyle(innerSquare[i].firstChild);
+            }
+        };
+    }
+    for(let i = 0; i < 81; i++) {
+        if(innerSquare[i].firstChild.nodeName === 'P') {
+            console.log(check(rows, columns, i, parseInt(innerSquare[i].firstChild.innerHTML)));
+        };
+    }
+    if(document.getElementsByClassName('changed')) {
+        alert('Entered incorrect values.');
     }
     return false;
 }
 
 submitButton.addEventListener('click', submit);
+
+
+const changeStyle = (node) => {
+    node.setAttribute('class', 'changed');
+};
