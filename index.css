@@ -1,15 +1,16 @@
+p {
+    font-weight: bold;
+}
+
 #main {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    background-color: blanchedalmond;
 }
 
 #title {
     text-align: center;
     padding-top:70pt;
-}
-
-#a1 {
-   background-color: blanchedalmond;
 }
 
 #a4 {
@@ -22,6 +23,11 @@
 }
 
 .num_inp {
+    font-weight: bold;
+    width: 1.1cm;
+    background-color: #b3f5c4;
+    text-align: center;
+    padding-top: 0.3mm;
     border: none;
 }
 
@@ -33,6 +39,7 @@
 }
 
 .inner_square {
+    background-color: #b3f5c4;
     text-align: center;
     padding-top: 4mm;
     height: 1.5cm;
