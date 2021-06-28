@@ -4,11 +4,6 @@ But now I can't solove problem with importing.
 This file will be separated minimum into two different files.
  */
 
-
-
-
-
-
 const rows = {
     r1: [],
     r2: [],
@@ -184,11 +179,20 @@ const check = (rows, columns, num, val) => {
 }
 
 
-const renew = (arr) => {
-    if(arr.length < 1) {
-        for(let i=0; i<9; i++) {
-            arr.push(i+1);
+const renew = (arr, arr1 = undefined) => {
+    if(arr instanceof Array) {
+        if(arr.length < 1) {
+            for(let i=0; i<9; i++) {
+                arr.push(i+1);
+            }
         }
+        return;
+    }
+    for(let i of Object.keys(arr)) {
+        arr[i].length = 0;
+    }
+    for(let i of Object.keys(arr1)) {
+        arr1[i].length = 0;
     }
 }
 
@@ -197,7 +201,15 @@ const renew = (arr) => {
 
 const main=document.getElementById('main');
 
-const table=[1, 2, 3, 4, 5, 6, 7, 8, 9];
+const table=[1, 2, 3, 4, 5, 6, 7, 8, 9,
+             4, 5, 6, 7, 8, 9, 1, 2, 3,
+             7, 8, 9, 1, 2, 3, 4, 5, 6,
+             2, 3, 1, 5, 6, 4, 8, 9, 7,
+             5, 6, 4, 8, 9, 7, 2, 3, 1,
+             8, 9, 7, 2, 3, 1, 5, 6, 4,
+             3, 1, 2, 6, 4, 5, 9, 7, 8,
+             6, 4, 5, 9, 7, 8, 3, 1, 2,
+             9, 7, 8, 3, 1, 2, 6, 4, 5];
 
 for(let i=0; i<9; i++) {
     let nested=document.createElement('div');
@@ -222,12 +234,11 @@ for(let i=0; i<9;i++) {
         let nestedDiv=document.createElement('div');
         nestedDiv.setAttribute('class', 'inner_square');
         let coincidence=parseInt(Math.random()*2);
-        let buf=table[parseInt(Math.random() * table.length)];
-        if(coincidence===1 && check(rows, columns, count, buf)) {
+        let buf=table[count];
+        if(coincidence===1) {
             let p=document.createElement('p');
             p.innerHTML = buf;
             nestedDiv.appendChild(p);
-            table.splice(table.indexOf(buf), 1);
         } else {
             let input=document.createElement('input');
             input.setAttribute('class', 'num_inp');
@@ -239,11 +250,11 @@ for(let i=0; i<9;i++) {
         count++;
         div.appendChild(nestedDiv);
     }
-
-    table.length = 0;
-    renew(table);
     divWithTable.appendChild(div);
 };
+
+table.length = 0; // Make an array to check whether table includs incorrect values.
+renew(table);                  // this will be used into submit function.
 
 const divWithButton = document.getElementById('a7');
 const submitButton = document.createElement('button');
@@ -253,6 +264,7 @@ divWithButton.appendChild(submitButton);
 const innerSquare = document.getElementsByClassName('inner_square');
 
 const submit = () => {
+    renew(rows, columns);
     let cellValue = 0;
     for(let i = 0; i < 81; i++) {
         if(innerSquare[i].firstChild.nodeName === 'INPUT') {
@@ -261,30 +273,36 @@ const submit = () => {
                 alert('Empty cells are not allowed.');
                 return;
             }
-            if(!check(rows, columns, i, cellValue)) {
-                changeStyle(innerSquare[i].firstChild);
-            }
         } else {
             cellValue = parseInt(innerSquare[i].firstChild.innerHTML);
         }
+        if(!check(rows, columns, i, cellValue)) {
+            changeStyle(innerSquare[i].firstChild); console.log('row||col');
+        }
         if(table.indexOf(cellValue) < 0) {
-            changeStyle(innerSquare[i].firstChild);
+            changeStyle(innerSquare[i].firstChild); console.log('table');
         };
         table.splice(table.indexOf(cellValue), 1);
         renew(table);
     }
-    for(let i = 0; i < 81; i++) {
-        if(innerSquare[i].firstChild.nodeName === 'P') {
-            console.log(check(rows, columns, i, parseInt(innerSquare[i].firstChild.innerHTML)));
-        };
-    }
-    if(document.getElementsByClassName('changed')) {
+    
+    if(document.getElementsByClassName('changed').length > 0) {
         alert('Entered incorrect values.');
+        return;
     }
-    return false;
+    alert('You win!');
+}
+
+const resetChanges = () => {
+    Array.from(innerSquare).forEach(e => {
+        if(e.firstChild.classList.value === 'changed') {
+            e.firstChild.classList.remove('changed');
+        }
+    });
 }
 
 submitButton.addEventListener('click', submit);
+divWithTable.addEventListener('click', resetChanges);
 
 
 const changeStyle = (node) => {
