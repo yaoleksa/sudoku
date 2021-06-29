@@ -253,8 +253,8 @@ for(let i=0; i<9;i++) {
     divWithTable.appendChild(div);
 };
 
-table.length = 0; // Make an array to check whether table includs incorrect values.
-renew(table);                  // this will be used into submit function.
+table.length = 0; /* Make an array to check whether table includs incorrect values.
+                     this will be used into submit function. */
 
 const divWithButton = document.getElementById('a7');
 const submitButton = document.createElement('button');
@@ -265,6 +265,8 @@ const innerSquare = document.getElementsByClassName('inner_square');
 
 const submit = () => {
     renew(rows, columns);
+    renew(table);
+    console.log(rows, columns);
     let cellValue = 0;
     for(let i = 0; i < 81; i++) {
         if(innerSquare[i].firstChild.nodeName === 'INPUT') {
