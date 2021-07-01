@@ -18,6 +18,8 @@ divWithTitle.appendChild(title);
 const divWithTable=document.getElementById('a4');
 let count=0;
 
+sudo.genereteSudo('easy', parseInt(Math.random() * 3));
+
 
 for(let i=0; i<9;i++) {
     let div=document.createElement('div');
