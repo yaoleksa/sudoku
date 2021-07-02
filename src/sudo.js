@@ -2,7 +2,7 @@ const table=[];
 
 const genereteSudo = (complexity, selector) => {
     switch(complexity) {
-        case 'easy':
+        case 'Easy':
             switch(selector) {
                 case 0:
                     table.push(
@@ -44,7 +44,7 @@ const genereteSudo = (complexity, selector) => {
                     );
             }
             break;
-        case 'midle':
+        case 'Middle':
             switch(selector) {
                 case 0:
                     table.push(
