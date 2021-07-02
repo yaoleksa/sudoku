@@ -3,7 +3,7 @@ p {
 }
 
 button {
-    margin-top: 15pt;
+    margin: 15pt;
     border-radius: 5pt;
     background-color: #b3f5c4;
     font-weight: bold;
