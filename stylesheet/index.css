@@ -3,7 +3,7 @@ p {
 }
 
 button {
-    margin: 15pt;
+    margin: 5pt;
     border-radius: 5pt;
     background-color: #b3f5c4;
     font-weight: bold;
@@ -12,7 +12,7 @@ button {
 
 #main {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr 1.5fr 1fr;
     background-color: blanchedalmond;
 }
 
@@ -25,6 +25,7 @@ button {
 #a4 {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
 }
 
 #a7 button {
@@ -54,6 +55,7 @@ button {
 .outer_square {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
     border: 1.5pt solid;
     border-color: darkgray;
 }
@@ -62,10 +64,8 @@ button {
     background-color: #b3f5c4;
     text-align: center;
     padding-top: 4mm;
-    height: 1.5cm;
     border: 0.5pt solid;
     border-width: 0.5pt;
-    width: 1.5cm;
     border-color: darkgray;
 }
 

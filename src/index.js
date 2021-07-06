@@ -76,6 +76,7 @@ const restrict = (val) => {
 
 const selectLevel = (event) => {
 
+    title.innerHTML = 'Sudoku';
     sudo.genereteSudo(event.target.innerHTML, parseInt(Math.random() * 3));
     easyButton.remove();
     middleButton.remove();
